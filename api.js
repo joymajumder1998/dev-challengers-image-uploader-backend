@@ -43,4 +43,10 @@ module.exports = (app) => {
       res.status(500).json({ message: err.message });
     }
   });
+
+  app.get("/getIP", (req, res) => {
+    const clientIP =
+      req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+    res.status(200).json({ message: clientIP });
+  });
 };
